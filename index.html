@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="utf-8"> 
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=500" />
+	<meta name="keywords" content="ScrollMagic, example, scrolling, attaching, scrollbar, anchor, link, in-page, navigation, hash" />
+	<title>Where is the Happiness?</title>
+
+	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic|Josefin+Slab:400,700italic' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="./assets/css/normalize.css" type="text/css">
+	<link rel="stylesheet" href="./assets/css/style.css" type="text/css">
+	<link rel="stylesheet" href="./assets/css/examples.css" type="text/css">
+	<link rel="shortcut icon" href="./assets/img/favicon.ico" type="image/x-icon">
+
+	<script type="text/javascript" src="./assets/js/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="./assets/js/lib/highlight.pack.js"></script>
+	<script type="text/javascript" src="./assets/js/lib/modernizr.custom.min.js"></script>
+
+	
+	<script type="text/javascript" src="./ScrollMagic.js"></script>
+	<script type="text/javascript" src="./libraries/plugins/debug.addIndicators.js"></script>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
+	<link rel="stylesheet" href="style.css">
+	<script src="libraries/p5.js"></script>
+	<script src="Circles.js"></script>
+</head>
+<body>
+	<ul id="menu"></ul>
+	<div id="content-wrapper">
+		<div id="example-wrapper">
+			<div class="scrollContent">
+				<section id="titlechart">
+					<div id="description">
+						<h1>Where is the Happiness?</h1>
+						<h2>This page dives into what makes individuals happy and where in the world you can find happiness</h2>
+						<h3>Whether it is family, money, or the government, lots of things influence the "happiness score" of a country</h3>
+						<h3>This page explores that.</h3>
+						<h4>Click <a href="https://www.kaggle.com/unsdsn/world-happiness">here</a> to view the data.</h4>
+					</div>
+				</section>
+				<section class="demo" id="section-wipes">
+					<style type="text/css">
+						.panel {
+							height: 100%;
+							width: 100%;
+						}
+						.panel.green {
+							margin-bottom: 400px
+						}
+					</style>
+					<section class="panel red">
+						<div align="center">
+							<div id='map' style="width: windowWidth; height: windowHeight;"></div>
+							<font size=100px color="white">
+							<h1>Global Happiness Scores</h1>
+							<h2>This map showcases the different happiness scores for countries around the world.</h2>
+							<h3>The "happier" a country is, the higher their score.</h3>
+						</font>
+						</div>
+					</section>
+					<section class="panel white">
+						<center>
+								<font size=100px color="black">
+										<h1>Where does this happiness originate though?</h1>
+										<h2>The following graph intends to show this</h2>
+										<h2>With the strength of family on the x-axis, the country's "happiness rank" on the y-axis, 
+											and the size of the circles corresponding the economic GDP per capita, a trend can be
+											seen.
+										</h2>
+										<h3>As the family strength and economic GDP per capita increases within a country, the country's
+											"happiness rank" increases. This means that maybe money <b>does</b> buy happiness and home
+											and happiness <b>is</b> where the heart is.
+										</h3>
+									</font>
+									<img src="smile.png" alt="Smile">
+						</center>
+					</section>
+					<section class="panel black">
+						<div id="my_sketch"></div>
+					</section>
+					<section class="panel white">
+							<center>
+										<img src="TheEnd.png" alt="Smile">
+							</center>
+						</section>
+					<script>
+						$(function () { // wait for document ready
+							// init
+							var controller = new ScrollMagic.Controller({
+								globalSceneOptions: {
+									triggerHook: 'onLeave'
+								}
+							});
+
+							// get all slides
+							var slides = document.querySelectorAll("section.panel");
+
+							// create scene for every slide
+							for (var i=0; i<slides.length; i++) {
+								new ScrollMagic.Scene({
+										triggerElement: slides[i]
+									})
+									.setPin(slides[i])
+									.addIndicators() // add indicators (requires plugin)
+									.addTo(controller);
+							}
+						});
+					</script>
+				</section>
+			</div>
+		</div>
+	</div>
+	<script src="dataupdate.js"></script>
+    <script src="MapScroll.js"></script>
+</html>
